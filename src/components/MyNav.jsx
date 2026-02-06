@@ -24,7 +24,7 @@ class MyNav extends Component {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <a className="nav-link active fw-bold" href="#">
+                <a className="nav-link active fw-bold" href="" onClick={() => this.props.changePage("profile")}>
                   Home
                 </a>
               </li>
@@ -55,18 +55,22 @@ class MyNav extends Component {
                 KIDS
               </div>
               <i className="bi bi-bell icons"></i>
-              <div className="d-flex align-items-center justify-content-end m-1 flex-grow-1">
-                <a className="col nav-link dropdown-toggle text-secondary fs-10" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  <img style={{ width: "30px" }} src="\public\avatar.png" alt="avatar" />
+              <div className="dropdown d-flex align-items-center justify-content-end m-1 flex-grow-1">
+                <a className="col nav-link dropdown-toggle text-light fs-10" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <img style={{ width: "30px" }} src="/avatar.png" alt="avatar" />
                 </a>
-                <ul className="dropdown-menu bg-primary">
+                <ul className="dropdown-menu dropdown-menu-end">
                   <li>
-                    <a href="#" className="link-secondary text-decoration-none fs-8 fw-light p-4">
+                    <button
+                      onClick={() => this.props.changePage("profile")}
+                      className="border-0 m-0 fs-8 fw-light px-4 py-1"
+                      style={{ backgroundColor: "#212529" }}
+                    >
                       Profile
-                    </a>
+                    </button>
                   </li>
                   <li>
-                    <a href="#" className="link-secondary text-decoration-none fs-8 fw-light p-4">
+                    <a href="#" className="link-light text-decoration-none fs-8 fw-light px-4">
                       Settings
                     </a>
                   </li>
