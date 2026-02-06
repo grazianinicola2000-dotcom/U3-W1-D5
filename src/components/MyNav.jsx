@@ -24,7 +24,7 @@ class MyNav extends Component {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <a className="nav-link active fw-bold" href="" onClick={() => this.props.changePage("profile")}>
+                <a className="nav-link active fw-bold" href="" onClick={() => this.props.changePage("home")}>
                   Home
                 </a>
               </li>
