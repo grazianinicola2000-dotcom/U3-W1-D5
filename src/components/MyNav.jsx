@@ -24,7 +24,7 @@ class MyNav extends Component {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <a class="nav-link active fw-bold" href="#">
+                <a className="nav-link active fw-bold" href="#">
                   Home
                 </a>
               </li>
@@ -51,7 +51,7 @@ class MyNav extends Component {
             </ul>
             <div className="d-flex align-items-center">
               <i className="bi bi-search icons"></i>
-              <div id="kids" class="fw-bold">
+              <div id="kids" className="fw-bold">
                 KIDS
               </div>
               <i className="bi bi-bell icons"></i>

@@ -3,7 +3,7 @@ import { Component } from "react";
 class MyFooter extends Component {
   render() {
     return (
-      <footer>
+      <footer id="mainFooter" className="container ">
         <div className="row justify-content-center mt-5">
           <div className="col col-6">
             <div className="row">
@@ -41,7 +41,7 @@ class MyFooter extends Component {
                   </div>
                 </div>
               </div>
-              <div clasNames="col">
+              <div className="col">
                 <div className="row">
                   <div className="col footer-links">
                     <p>
