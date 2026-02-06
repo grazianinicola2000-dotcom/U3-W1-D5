@@ -1,10 +1,12 @@
 import { Component } from "react";
+import { Spinner } from "react-bootstrap";
 
 const omdbURL = "https://www.omdbapi.com/?i=tt3896198&apikey=97603a2b&s=";
 
 class Carousel extends Component {
   state = {
     data: [],
+    loading: true,
   };
 
   getData = () => {
@@ -20,6 +22,7 @@ class Carousel extends Component {
         console.log(data.Search);
         this.setState({
           data: data.Search,
+          loading: false,
         });
       })
       .catch((err) => {
@@ -51,6 +54,14 @@ class Carousel extends Component {
             })}
           </div>
           <div className="carousel-inner">
+            {this.state.loading && (
+              <div className="placeholder">
+                <img src="public\placeholder.png" alt="placeholder" />
+                <Spinner className="spinner" animation="border" variant="light" role="status">
+                  <span className="visually-hidden">Loading...</span>
+                </Spinner>
+              </div>
+            )}
             {this.state.data.map((movie, i) => {
               return (
                 <div key={movie.imdbID + i} className={`carousel-item ${i === 0 ? "active" : ""}`}>

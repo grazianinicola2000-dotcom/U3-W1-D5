@@ -75,3 +75,29 @@ footer {
 .carousel-inner {
   overflow: visible;
 }
+
+.placeholder {
+  position: relative;
+  width: 100%;
+  height: 450px;
+  display: flex;
+  justify-content: center;
+  background-color: #221f1f;
+}
+
+.placeholder img {
+  width: 45%;
+}
+
+@media screen and (min-width: 992px) {
+  .placeholder img {
+    width: 90%;
+  }
+}
+
+.placeholder .spinner {
+  position: absolute;
+  top: 45%;
+  left: 47%;
+  /* transform: translate(-50%, -50%); */
+}

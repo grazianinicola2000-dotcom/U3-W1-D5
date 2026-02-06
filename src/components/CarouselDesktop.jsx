@@ -1,10 +1,12 @@
 import { Component } from "react";
+import { Spinner } from "react-bootstrap";
 
 const omdbURL = "https://www.omdbapi.com/?i=tt3896198&apikey=97603a2b&s=";
 
 class CarouselDesktop extends Component {
   state = {
     data: [],
+    loading: true,
   };
 
   getData = () => {
@@ -21,6 +23,7 @@ class CarouselDesktop extends Component {
         console.log(movies);
         this.setState({
           data: movies,
+          loading: false,
         });
       })
       .catch((err) => {
@@ -38,6 +41,40 @@ class CarouselDesktop extends Component {
         <h3>{this.props.title}</h3>
         <div id={this.props.id} className="carousel slide">
           <div className="carousel-inner">
+            {this.state.loading && (
+              <div className="d-flex justify-content-center gap-2 flex-nowrap">
+                <div className="placeholder">
+                  <img src="public\placeholder.png" alt="placeholder" />
+                  <Spinner className="spinner" animation="border" variant="light" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                  </Spinner>
+                </div>
+                <div className="placeholder">
+                  <img src="public\placeholder.png" alt="placeholder" />
+                  <Spinner className="spinner" animation="border" variant="light" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                  </Spinner>
+                </div>
+                <div className="placeholder">
+                  <img src="public\placeholder.png" alt="placeholder" />
+                  <Spinner className="spinner" animation="border" variant="light" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                  </Spinner>
+                </div>
+                <div className="placeholder">
+                  <img src="public\placeholder.png" alt="placeholder" />
+                  <Spinner className="spinner" animation="border" variant="light" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                  </Spinner>
+                </div>
+                <div className="placeholder">
+                  <img src="public\placeholder.png" alt="placeholder" />
+                  <Spinner className="spinner" animation="border" variant="light" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                  </Spinner>
+                </div>
+              </div>
+            )}
             {this.state.data.map((movies, i) => (
               <div key={i} className={`carousel-item ${i === 0 ? "active" : ""}`}>
                 <div className="d-flex justify-content-center gap-2 flex-nowrap">
