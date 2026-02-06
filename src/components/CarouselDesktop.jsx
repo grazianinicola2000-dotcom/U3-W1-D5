@@ -41,7 +41,7 @@ class CarouselDesktop extends Component {
             {this.state.data.map((movies, i) => (
               <div key={i} className={`carousel-item ${i === 0 ? "active" : ""}`}>
                 <div className="d-flex justify-content-center gap-2 flex-nowrap">
-                  {movies.map((movie, i) => (i < 5 ? <img key={movie.imdbID + i} src={movie.Poster} /> : null))}
+                  {movies.map((movie, i) => (i < 5 ? <img className="movie" key={movie.imdbID + i} src={movie.Poster} /> : null))}
                 </div>
               </div>
             ))}

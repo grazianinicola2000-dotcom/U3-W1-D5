@@ -70,3 +70,7 @@ footer {
 .movie:hover {
   transform: scale(1.15);
 }
+
+.carousel-inner {
+  overflow: visible;
+}
