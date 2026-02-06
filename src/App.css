@@ -69,6 +69,7 @@ footer {
 
 .movie:hover {
   transform: scale(1.15);
+  z-index: 999;
 }
 
 .carousel-inner {
