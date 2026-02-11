@@ -1,6 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { Component } from "react";
+import { Link } from "react-router-dom";
 
 class MyNav extends Component {
   render() {
@@ -24,14 +25,14 @@ class MyNav extends Component {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <a className="nav-link active fw-bold" href="" onClick={() => this.props.changePage("home")}>
+                <Link className={`nav-link fw-bold ${location.pathname === "/" ? "active" : ""}`} to="/">
                   Home
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link fw-bold" href="#">
+                <Link className={`nav-link fw-bold ${location.pathname === "/tvshows" ? "active" : ""}`} to="/tvshows">
                   TV Shows
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
                 <a className="nav-link fw-bold" href="#">
@@ -61,13 +62,9 @@ class MyNav extends Component {
                 </a>
                 <ul className="dropdown-menu dropdown-menu-end">
                   <li>
-                    <button
-                      onClick={() => this.props.changePage("profile")}
-                      className="border-0 m-0 fs-8 fw-light px-4 py-1"
-                      style={{ backgroundColor: "#212529" }}
-                    >
+                    <Link to="/profile" className="text-light m-0 fs-8 fw-light px-4 py-1 text-decoration-none" style={{ backgroundColor: "#212529" }}>
                       Profile
-                    </button>
+                    </Link>
                   </li>
                   <li>
                     <a href="#" className="link-light text-decoration-none fs-8 fw-light px-4">

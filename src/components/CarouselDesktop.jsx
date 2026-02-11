@@ -1,16 +1,16 @@
-import { Component } from "react";
+import { useEffect, useState } from "react";
 import { Spinner } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 const omdbURL = "https://www.omdbapi.com/?i=tt3896198&apikey=97603a2b&s=";
 
-class CarouselDesktop extends Component {
-  state = {
-    data: [],
-    loading: true,
-  };
+const CarouselDesktop = function (props) {
+  const [data, setdata] = useState([]);
+  const [loading, setloading] = useState(true);
+  const navigate = useNavigate();
 
-  getData = () => {
-    const moviesForCarousel = [this.props.search1, this.props.search2, this.props.search3];
+  const getData = () => {
+    const moviesForCarousel = [props.search1, props.search2, props.search3];
 
     Promise.all(
       moviesForCarousel.map((search) =>
@@ -20,81 +20,87 @@ class CarouselDesktop extends Component {
       ),
     )
       .then((movies) => {
-        console.log(movies);
-        this.setState({
-          data: movies,
-          loading: false,
-        });
+        setdata(movies);
+        setloading(false);
       })
       .catch((err) => {
         console.log("ERROR", err);
       });
   };
 
-  componentDidMount() {
-    this.getData();
-  }
+  useEffect(() => {
+    getData();
+  }, []);
 
-  render() {
-    return (
-      <section className="d-none d-lg-block mt-5">
-        <h3>{this.props.title}</h3>
-        <div id={this.props.id} className="carousel slide">
-          <div className="carousel-inner">
-            {this.state.loading && (
+  return (
+    <section className="d-none d-lg-block mt-5">
+      <h3>{props.title}</h3>
+      <div id={props.id} className="carousel slide">
+        <div className="carousel-inner">
+          {loading && (
+            <div className="d-flex justify-content-center gap-2 flex-nowrap">
+              <div className="placeholder">
+                <img src="public\placeholder.png" alt="placeholder" />
+                <Spinner className="spinner" animation="border" variant="light" role="status">
+                  <span className="visually-hidden">Loading...</span>
+                </Spinner>
+              </div>
+              <div className="placeholder">
+                <img src="public\placeholder.png" alt="placeholder" />
+                <Spinner className="spinner" animation="border" variant="light" role="status">
+                  <span className="visually-hidden">Loading...</span>
+                </Spinner>
+              </div>
+              <div className="placeholder">
+                <img src="public\placeholder.png" alt="placeholder" />
+                <Spinner className="spinner" animation="border" variant="light" role="status">
+                  <span className="visually-hidden">Loading...</span>
+                </Spinner>
+              </div>
+              <div className="placeholder">
+                <img src="public\placeholder.png" alt="placeholder" />
+                <Spinner className="spinner" animation="border" variant="light" role="status">
+                  <span className="visually-hidden">Loading...</span>
+                </Spinner>
+              </div>
+              <div className="placeholder">
+                <img src="public\placeholder.png" alt="placeholder" />
+                <Spinner className="spinner" animation="border" variant="light" role="status">
+                  <span className="visually-hidden">Loading...</span>
+                </Spinner>
+              </div>
+            </div>
+          )}
+          {data.map((movies, i) => (
+            <div key={i} className={`carousel-item ${i === 0 ? "active" : ""}`}>
               <div className="d-flex justify-content-center gap-2 flex-nowrap">
-                <div className="placeholder">
-                  <img src="public\placeholder.png" alt="placeholder" />
-                  <Spinner className="spinner" animation="border" variant="light" role="status">
-                    <span className="visually-hidden">Loading...</span>
-                  </Spinner>
-                </div>
-                <div className="placeholder">
-                  <img src="public\placeholder.png" alt="placeholder" />
-                  <Spinner className="spinner" animation="border" variant="light" role="status">
-                    <span className="visually-hidden">Loading...</span>
-                  </Spinner>
-                </div>
-                <div className="placeholder">
-                  <img src="public\placeholder.png" alt="placeholder" />
-                  <Spinner className="spinner" animation="border" variant="light" role="status">
-                    <span className="visually-hidden">Loading...</span>
-                  </Spinner>
-                </div>
-                <div className="placeholder">
-                  <img src="public\placeholder.png" alt="placeholder" />
-                  <Spinner className="spinner" animation="border" variant="light" role="status">
-                    <span className="visually-hidden">Loading...</span>
-                  </Spinner>
-                </div>
-                <div className="placeholder">
-                  <img src="public\placeholder.png" alt="placeholder" />
-                  <Spinner className="spinner" animation="border" variant="light" role="status">
-                    <span className="visually-hidden">Loading...</span>
-                  </Spinner>
-                </div>
+                {movies.map((movie, i) =>
+                  i < 5 ? (
+                    <img
+                      onClick={() => {
+                        navigate("/details/" + movie.imdbID);
+                      }}
+                      className="movie"
+                      key={movie.imdbID + i}
+                      src={movie.Poster}
+                    />
+                  ) : null,
+                )}
               </div>
-            )}
-            {this.state.data.map((movies, i) => (
-              <div key={i} className={`carousel-item ${i === 0 ? "active" : ""}`}>
-                <div className="d-flex justify-content-center gap-2 flex-nowrap">
-                  {movies.map((movie, i) => (i < 5 ? <img className="movie" key={movie.imdbID + i} src={movie.Poster} /> : null))}
-                </div>
-              </div>
-            ))}
-          </div>
-          <button className="carousel-control-prev" type="button" data-bs-target={this.props.idtarget} data-bs-slide="prev">
-            <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span className="visually-hidden">Previous</span>
-          </button>
-          <button className="carousel-control-next" type="button" data-bs-target={this.props.idtarget} data-bs-slide="next">
-            <span className="carousel-control-next-icon" aria-hidden="true"></span>
-            <span className="visually-hidden">Next</span>
-          </button>
+            </div>
+          ))}
         </div>
-      </section>
-    );
-  }
-}
+        <button className="carousel-control-prev" type="button" data-bs-target={props.idtarget} data-bs-slide="prev">
+          <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span className="visually-hidden">Previous</span>
+        </button>
+        <button className="carousel-control-next" type="button" data-bs-target={props.idtarget} data-bs-slide="next">
+          <span className="carousel-control-next-icon" aria-hidden="true"></span>
+          <span className="visually-hidden">Next</span>
+        </button>
+      </div>
+    </section>
+  );
+};
 
 export default CarouselDesktop;

@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
-import { Spinner } from "react-bootstrap";
+import { Button, Spinner } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 const omdbURL = "https://www.omdbapi.com/?i=tt3896198&apikey=97603a2b&s=";
 
-const Carousel = function (props) {
+const TVShows = function (props) {
+  const navigate = useNavigate();
+
   const [data, setdata] = useState([]);
   const [loading, setloading] = useState(true);
-  const navigate = useNavigate();
 
   const getData = () => {
     fetch(`${omdbURL}${props.search}`)
@@ -33,9 +34,9 @@ const Carousel = function (props) {
   }, [props.search]);
 
   return (
-    <section className={`row ${props.media} mt-5`}>
+    <section className={`row ${props.media} mt-5 justify-content-center`}>
       <h3>{props.title}</h3>
-      <div id={props.id} className="carousel slide col-12 p-4" data-bs-ride="carousel">
+      <div id={props.id} className="carousel slide col-6 p-4" data-bs-ride="carousel">
         <div className="carousel-indicators">
           {data.map((movie, i) => {
             return (
@@ -61,15 +62,17 @@ const Carousel = function (props) {
           )}
           {data.map((movie, i) => {
             return (
-              <div key={movie.imdbID + i} className={`carousel-item ${i === 0 ? "active" : ""}`}>
-                <img
-                  src={movie.Poster}
-                  onClick={() => {
-                    navigate("/details/" + movie.imdbID);
-                  }}
-                  className="movie d-block m-auto"
-                  alt="movie"
-                />
+              <div key={movie.imdbID + i}>
+                <div className={`carousel-item ${i === 0 ? "active" : ""}`}>
+                  <img
+                    src={movie.Poster}
+                    onClick={() => {
+                      navigate("/details/" + movie.imdbID);
+                    }}
+                    className="movie d-block m-auto"
+                    alt="movie"
+                  />
+                </div>
               </div>
             );
           })}
@@ -86,5 +89,4 @@ const Carousel = function (props) {
     </section>
   );
 };
-
-export default Carousel;
+export default TVShows;
