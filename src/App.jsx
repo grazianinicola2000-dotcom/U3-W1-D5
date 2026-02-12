@@ -8,6 +8,7 @@ import Profile from "./components/profile.jsx";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import TVShows from "./components/TVShows.jsx";
 import Details from "./components/Details.jsx";
+import Error from "./components/Error.jsx";
 
 import "./App.css";
 
@@ -25,12 +26,13 @@ function App() {
                 <Carousel search="Wars" media="d-lg-none" idtarget="#trendinNow" id="trendinNow" title="Trending Now" />
                 <Carousel search="avatar" media="d-lg-none" idtarget="#watchItAgain" id="watchItAgain" title="Watch it Again" />
                 <Carousel search="pirates" media="d-lg-none" idtarget="#newReleases" id="newReleases" title="New Releases" />
-                <CarouselDesktop search1="Wars" search2="alien" search3="terminator" idtarget="#trendinNowDesk" id="trendinNowDesk" title="Trending Now" />
+                <CarouselDesktop search1="plain" search2="alien" search3="terminator" idtarget="#trendinNowDesk" id="trendinNowDesk" title="Trending Now" />
                 <CarouselDesktop search1="avatar" search2="ring" search3="mission" idtarget="#watchItAgainDesk" id="watchItAgainDesk" title="Watch it Again" />
                 <CarouselDesktop search1="pirates" search2="fast" search3="terminator" idtarget="#newReleasesDesk" id="newReleasesDesk" title="New Releases" />
               </>
             }
           />
+          <Route path="*" element={<Error />} />
           <Route path="/tvshows" element={<TVShows search="Wars" idtarget="#tvshows" id="tvshows" title="TV Shows" />} />
           <Route path="/details/:movieID" element={<Details />} />
           <Route path="/profile" element={<Profile />} />

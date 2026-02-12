@@ -36,9 +36,9 @@ const MyNav = function () {
               </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link fw-bold" href="#">
+              <Link className={`nav-link fw-bold ${location.pathname === "/movies" ? "active" : ""}`} to="">
                 Movies
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
               <a className="nav-link fw-bold" href="#">
